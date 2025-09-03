@@ -15,33 +15,33 @@ return [
     */
 
     'postmark' => [
-        'token' => env('POSTMARK_TOKEN'),
+        'token' => env('POSTMARK_TOKEN', null),
     ],
 
     'ses' => [
-        'key' => env('AWS_ACCESS_KEY_ID'),
-        'secret' => env('AWS_SECRET_ACCESS_KEY'),
+        'key' => env('AWS_ACCESS_KEY_ID', null),
+        'secret' => env('AWS_SECRET_ACCESS_KEY', null),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
     'resend' => [
-        'key' => env('RESEND_KEY'),
+        'key' => env('RESEND_KEY', null),
     ],
 
     'slack' => [
         'notifications' => [
-            'bot_user_oauth_token' => env('SLACK_BOT_USER_OAUTH_TOKEN'),
-            'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL'),
+            'bot_user_oauth_token' => env('SLACK_BOT_USER_OAUTH_TOKEN', null),
+            'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL', null),
         ],
     ],'google' => [
-    'client_id' => env('GOOGLE_CLIENT_ID'),
-    'client_secret' => env('GOOGLE_CLIENT_SECRET'),
-    'redirect' => env('GOOGLE_REDIRECT_URI'),
+    'client_id' => env('GOOGLE_CLIENT_ID', null),
+    'client_secret' => env('GOOGLE_CLIENT_SECRET', null),
+    'redirect' => env('GOOGLE_REDIRECT_URI', null),
 ],
 'facebook' => [
-    'client_id' => env('FACEBOOK_CLIENT_ID'),
-    'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
-    'redirect' => env('FACEBOOK_REDIRECT_URI'),
+    'client_id' => env('FACEBOOK_CLIENT_ID', null),
+    'client_secret' => env('FACEBOOK_CLIENT_SECRET', null),
+    'redirect' => env('FACEBOOK_REDIRECT_URI', null),
 ],
 
 ];
