@@ -16,8 +16,15 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
+        // Apply CORS middleware globally
         $middleware->append(CustomCorsMiddleware::class);
         $middleware->append(HandleCors::class);
+        
+        // Apply CORS to API routes specifically
+        $middleware->api(append: [
+            CustomCorsMiddleware::class,
+            HandleCors::class,
+        ]);
 
      
     //       $middleware->validateCsrfTokens(except: [

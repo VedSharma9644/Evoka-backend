@@ -5,6 +5,24 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\SubscriptionController;
 use Illuminate\Http\Request;
 
+// Add CORS headers to all API routes
+Route::options('{any}', function () {
+    return response('', 200)
+        ->header('Access-Control-Allow-Origin', '*')
+        ->header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
+        ->header('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With, Accept, Origin')
+        ->header('Access-Control-Allow-Credentials', 'true');
+})->where('any', '.*');
+
+// Test endpoint to verify CORS
+Route::get('/test-cors', function () {
+    return response()->json([
+        'message' => 'CORS is working!',
+        'timestamp' => now(),
+        'origin' => request()->header('Origin')
+    ])->header('Access-Control-Allow-Origin', '*');
+});
+
 // Route::middleware(['stateful', 'auth:sanctum'])->get('/user', [AuthController::class, 'user']);
 Route::middleware( 'auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
