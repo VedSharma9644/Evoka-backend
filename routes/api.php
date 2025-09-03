@@ -3,17 +3,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\SubscriptionController;
-use App\Helpers\CorsHelper;
 use Illuminate\Http\Request;
-
-// Add CORS headers to all API routes
-Route::options('{any}', function () {
-    return CorsHelper::handlePreflight();
-})->where('any', '.*');
 
 // Test endpoint to verify CORS
 Route::get('/test-cors', function () {
-    return CorsHelper::corsJson([
+    return response()->json([
         'message' => 'CORS is working!',
         'timestamp' => now(),
         'origin' => request()->header('Origin'),
@@ -23,7 +17,7 @@ Route::get('/test-cors', function () {
 
 // Simple health check endpoint
 Route::get('/health', function () {
-    return CorsHelper::corsJson([
+    return response()->json([
         'status' => 'ok',
         'message' => 'Backend is running',
         'timestamp' => now(),
@@ -33,7 +27,7 @@ Route::get('/health', function () {
 
 // Simple test endpoint without authentication
 Route::get('/test', function () {
-    return CorsHelper::corsJson([
+    return response()->json([
         'message' => 'Backend is accessible!',
         'timestamp' => now(),
         'origin' => request()->header('Origin'),

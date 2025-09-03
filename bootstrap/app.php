@@ -17,10 +17,12 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         // Apply CORS middleware globally
+        // $middleware->append(CustomCorsMiddleware::class); // Commented out - middleware doesn't exist
         $middleware->append(HandleCors::class);
         
         // Apply CORS to API routes specifically
         $middleware->api(append: [
+            // CustomCorsMiddleware::class, // Commented out - middleware doesn't exist
             HandleCors::class,
         ]);
     })

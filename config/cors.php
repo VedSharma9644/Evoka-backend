@@ -11,8 +11,6 @@ return [
         'http://localhost:5173',
         'https://evoka-frontend.vercel.app',
         'https://evoka.info',
-        'https://*.vercel.app',
-        '*'
     ],
 
     'allowed_origins_patterns' => [
