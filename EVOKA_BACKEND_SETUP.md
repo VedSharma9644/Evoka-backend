@@ -125,6 +125,9 @@ GOOGLE_REDIRECT_URI=http://localhost:8000/api/google/callback
 PAYPAL_CLIENT_ID=your_paypal_client_id_here
 PAYPAL_SECRET=your_paypal_secret_here
 PAYPAL_BASE_URL=https://api-m.sandbox.paypal.com
+
+# Frontend URL for OAuth redirects
+FRONTEND_URL=https://evoka-frontend.vercel.app/
 ```
 
 ## 📊 Database Schema
