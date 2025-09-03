@@ -3,24 +3,32 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\SubscriptionController;
+use App\Helpers\CorsHelper;
 use Illuminate\Http\Request;
 
 // Add CORS headers to all API routes
 Route::options('{any}', function () {
-    return response('', 200)
-        ->header('Access-Control-Allow-Origin', '*')
-        ->header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
-        ->header('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With, Accept, Origin')
-        ->header('Access-Control-Allow-Credentials', 'true');
+    return CorsHelper::handlePreflight();
 })->where('any', '.*');
 
 // Test endpoint to verify CORS
 Route::get('/test-cors', function () {
-    return response()->json([
+    return CorsHelper::corsJson([
         'message' => 'CORS is working!',
         'timestamp' => now(),
-        'origin' => request()->header('Origin')
-    ])->header('Access-Control-Allow-Origin', '*');
+        'origin' => request()->header('Origin'),
+        'headers' => request()->headers->all()
+    ]);
+});
+
+// Simple health check endpoint
+Route::get('/health', function () {
+    return CorsHelper::corsJson([
+        'status' => 'ok',
+        'message' => 'Backend is running',
+        'timestamp' => now(),
+        'version' => '1.0.0'
+    ]);
 });
 
 // Route::middleware(['stateful', 'auth:sanctum'])->get('/user', [AuthController::class, 'user']);
