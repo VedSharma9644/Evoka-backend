@@ -31,6 +31,17 @@ Route::get('/health', function () {
     ]);
 });
 
+// Simple test endpoint without authentication
+Route::get('/test', function () {
+    return CorsHelper::corsJson([
+        'message' => 'Backend is accessible!',
+        'timestamp' => now(),
+        'origin' => request()->header('Origin'),
+        'method' => request()->method(),
+        'url' => request()->url()
+    ]);
+});
+
 // Route::middleware(['stateful', 'auth:sanctum'])->get('/user', [AuthController::class, 'user']);
 Route::middleware( 'auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
